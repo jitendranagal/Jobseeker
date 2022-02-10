@@ -1,0 +1,37 @@
+<div id="left">
+<?php
+if(isset($_GET['mod']))
+{
+	$mod=$_GET['mod'];
+	$do=$_GET['do'];
+include_once("$mod/$do");
+}
+else if(isset($_GET['username']))
+{
+	$_POST['username']=$_GET['username'];
+		unset($_GET);
+		if($_POST['username']!=NULL)
+		{		
+			if($_SESSION['logindt']['ut']=="employers")
+			{
+				addedit('employers',$_POST,$_SESSION['logindt']['id']);
+			}
+			else
+			{
+				addedit('employee',$_POST,$_SESSION['logindt']['id']);
+			}
+			$_SESSION['logindt']['username']=$_POST['username'];
+			header("location:index.php?mod=manage_account&do=manage_account.php");
+		}
+		else
+		{
+				$mod="manage_account";
+				$do="manage_account.php&err=1";
+		}
+}
+else
+{
+	include_once("c2/basic.php");
+}
+?>
+</div>

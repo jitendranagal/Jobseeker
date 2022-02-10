@@ -1,0 +1,10 @@
+<?php
+session_start();
+include_once("head.php");
+include_once("config.php");
+include_once("function.php");
+include_once("left.php");
+include_once("center.php");
+include_once("right.php");
+include_once("foot.php");
+?>
